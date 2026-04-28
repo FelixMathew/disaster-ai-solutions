@@ -1,0 +1,53 @@
+# ----------------------
+# Python (Backend)
+# ----------------------
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Env files
+.env
+backend/.env
+frontend/.env
+
+# ----------------------
+# Node (Frontend)
+# ----------------------
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/dev-dist/
+node_modules/
+npm-debug.log*
+
+# ----------------------
+# Dataset & Large Files
+# ----------------------
+dataset/
+data/
+*.zip
+*.csv
+*.mp4
+*.avi
+
+# Model files (optional – keep only if small)
+*.h5
+*.keras
+*.pt
+*.pth
+
+# ----------------------
+# OS / System files
+# ----------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# IDE / Editor
+# ----------------------
+.vscode/
+.idea/

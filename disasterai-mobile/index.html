@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1"/>
+  <title>DisasterAI — Emergency Intelligence</title>
+  <meta name="description" content="AI-powered disaster monitoring, early warnings, and emergency response."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="light-theme">
+<div class="app-shell">
+
+<!-- ═══════════════════════════ LOGIN WELCOME ═══════════════════════════ -->
+<div class="screen" id="sc-login">
+  <div class="lw-top">
+    <svg class="lw-illo" viewBox="0 0 340 195" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sun rays -->
+      <g stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round">
+        <line x1="272" y1="22" x2="272" y2="10"/><line x1="272" y1="82" x2="272" y2="94"/>
+        <line x1="232" y1="52" x2="220" y2="52"/><line x1="312" y1="52" x2="324" y2="52"/>
+        <line x1="245" y1="25" x2="237" y2="17"/><line x1="299" y1="79" x2="307" y2="87"/>
+        <line x1="299" y1="25" x2="307" y2="17"/><line x1="245" y1="79" x2="237" y2="87"/>
+      </g>
+      <circle cx="272" cy="52" r="26" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.65)" stroke-width="2.5"/>
+      <!-- Cloud -->
+      <g fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" stroke-width="1.8">
+        <ellipse cx="56" cy="58" rx="30" ry="15"/><ellipse cx="38" cy="64" rx="19" ry="12"/>
+        <ellipse cx="75" cy="65" rx="22" ry="13"/><ellipse cx="56" cy="45" rx="17" ry="14"/>
+      </g>
+      <!-- House -->
+      <path d="M128 143 L128 98 L168 70 L208 98 L208 143 Z" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.75)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M118 102 L168 68 L218 102" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="152" y="118" width="18" height="25" rx="9" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.75)" stroke-width="2"/>
+      <rect x="135" y="104" width="14" height="14" rx="2" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.65)" stroke-width="1.8"/>
+      <rect x="187" y="104" width="14" height="14" rx="2" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.65)" stroke-width="1.8"/>
+      <!-- Trees left -->
+      <rect x="86" y="116" width="7" height="27" rx="3" fill="rgba(255,255,255,0.5)"/>
+      <ellipse cx="89" cy="106" rx="20" ry="22" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+      <ellipse cx="89" cy="89" rx="15" ry="17" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+      <!-- Trees right -->
+      <rect x="222" y="122" width="6" height="21" rx="3" fill="rgba(255,255,255,0.5)"/>
+      <ellipse cx="225" cy="112" rx="17" ry="20" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+      <!-- Ground -->
+      <path d="M20 145 Q100 140 168 143 Q238 146 320 141" stroke="rgba(255,255,255,0.38)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- Stars -->
+      <circle cx="18" cy="28" r="2.5" fill="rgba(255,255,255,0.5)"/>
+      <circle cx="44" cy="14" r="1.8" fill="rgba(255,255,255,0.4)"/>
+      <circle cx="140" cy="18" r="2" fill="rgba(255,255,255,0.38)"/>
+      <circle cx="200" cy="24" r="1.5" fill="rgba(255,255,255,0.35)"/>
+      <circle cx="310" cy="18" r="2" fill="rgba(255,255,255,0.4)"/>
+    </svg>
+    <div class="lw-logo"><div class="lw-logo-box"><span>DA</span></div></div>
+  </div>
+  <div class="lw-sheet">
+    <div class="lw-handle"></div>
+    <h1 class="lw-title">Welcome to DisasterAI! <span>👋</span></h1>
+    <p class="lw-sub">Your emergency intelligence companion</p>
+    <button class="btn-yellow btn-full lw-btn" onclick="showEmailLogin()">
+      <svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Sign in with Email / Phone
+    </button>
+    <div class="or-row"><span class="or-line"></span><span class="or-txt">or</span><span class="or-line"></span></div>
+    <button class="btn-social lw-btn" onclick="doGoogleLogin()">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Continue with Google
+    </button>
+    <button class="btn-social lw-btn" style="margin-top:10px" onclick="toast('Apple Sign-In coming soon','ok')">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Continue with Apple
+    </button>
+    <p class="login-alt" style="margin-top:20px">Already registered? <span class="link-yellow" onclick="showEmailLogin()">Log in</span></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ EMAIL LOGIN ═══════════════════════════ -->
+<div class="screen" id="sc-login-email">
+  <div class="lw-top lw-top-sm">
+    <div class="lw-logo"><div class="lw-logo-box"><span>DA</span></div></div>
+  </div>
+  <div class="lw-sheet lw-sheet-grow">
+    <div class="lw-handle"></div>
+    <div class="lw-back-row">
+      <button class="back-btn-anim" onclick="goScreen('sc-login')">
+        <div class="bba-box">
+          <svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg>
+          <svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg>
+        </div>
+      </button>
+      <h2 class="lw-title" style="font-size:22px;margin:0">Sign In 🔐</h2>
+    </div>
+    <div class="field-group"><label class="field-label">Email Address</label>
+      <div class="field-wrap"><svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <input type="email" class="field-input" id="li-email" placeholder="you@email.com"/></div>
+    </div>
+    <div class="field-group"><label class="field-label">Password</label>
+      <div class="field-wrap"><svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <input type="password" class="field-input" id="li-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    </div>
+    <button class="btn-yellow btn-full" style="margin-top:8px" onclick="doLogin()">Sign In</button>
+    <p class="login-alt" style="margin-top:18px">Don't have an account? <span class="link-yellow" onclick="goScreen('sc-register')">Register</span></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ REGISTER ═══════════════════════════ -->
+<div class="screen" id="sc-register">
+  <div class="lw-top lw-top-sm">
+    <div class="lw-logo"><div class="lw-logo-box"><span>DA</span></div></div>
+  </div>
+  <div class="lw-sheet lw-sheet-grow" style="overflow-y:auto">
+    <div class="lw-handle"></div>
+    <div class="lw-back-row">
+      <button class="back-btn-anim" onclick="goScreen('sc-login')">
+        <div class="bba-box">
+          <svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg>
+          <svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg>
+        </div>
+      </button>
+      <h2 class="lw-title" style="font-size:22px;margin:0">Create Account ✨</h2>
+    </div>
+    <div class="field-group"><label class="field-label">Full Name</label>
+      <div class="field-wrap"><svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <input type="text" class="field-input" id="reg-name" placeholder="Your full name"/></div>
+    </div>
+    <div class="field-group"><label class="field-label">Email Address</label>
+      <div class="field-wrap"><svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <input type="email" class="field-input" id="reg-email" placeholder="you@email.com"/></div>
+    </div>
+    <div class="field-group"><label class="field-label">Phone (WhatsApp)</label>
+      <div class="field-wrap"><svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.8 19.8 0 0 1 1.61 3.9 2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.1 6.1l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+      <input type="tel" class="field-input" id="reg-phone" placeholder="+91 98765 43210"/></div>
+    </div>
+    <div class="field-group"><label class="field-label">Password</label>
+      <div class="field-wrap"><svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <input type="password" class="field-input" id="reg-pass" placeholder="Create a password"/></div>
+    </div>
+    <button class="btn-yellow btn-full" style="margin-top:8px" onclick="doRegister()">Create Account</button>
+    <p class="login-alt" style="margin-top:16px">Already have an account? <span class="link-yellow" onclick="showEmailLogin()">Sign In</span></p>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ MAIN APP SHELL ═══════════════════════════ -->
+<!-- One shell with tab-switching content. Nav always visible. -->
+<div class="screen" id="sc-main">
+
+  <!-- ─── TAB: HOME ─── -->
+  <div class="tab-content active" id="tab-home">
+    <!-- Yellow gradient header -->
+    <div class="home-yh">
+      <div class="home-yh-left">
+        <div class="home-avatar" id="home-avatar" onclick="setNav('profile')">D</div>
+        <div>
+          <div class="home-greeting" id="home-greeting">Good Evening</div>
+          <div class="home-name" id="home-name">demo</div>
+        </div>
+      </div>
+      <button class="home-bell" onclick="setNav('alerts')">
+        <svg viewBox="0 0 16 20" height="20" width="16" fill="white"><path d="M15.0294 12.4902L14.0294 10.8302C13.8194 10.4602 13.6294 9.76016 13.6294 9.35016V6.82016C13.6282 5.70419 13.3111 4.61137 12.7147 3.66813C12.1183 2.72489 11.267 1.96978 10.2594 1.49016C10.0022 1.0335 9.62709 0.654303 9.17324 0.392195C8.71939 0.130087 8.20347 -0.00530784 7.6794 0.000159243C6.5894 0.000159243 5.6094 0.590159 5.0894 1.52016C3.1394 2.49016 1.7894 4.50016 1.7894 6.82016V9.35016C1.7894 9.76016 1.5994 10.4602 1.3894 10.8202L0.379396 12.4902C-0.0206039 13.1602 -0.110604 13.9002 0.139396 14.5802C0.379396 15.2502 0.949396 15.7702 1.6894 16.0202C3.6294 16.6802 5.6694 17.0002 7.7094 17.0002C9.7494 17.0002 11.7894 16.6802 13.7294 16.0302C14.4294 15.8002 14.9694 15.2702 15.2294 14.5802C15.4894 13.8902 15.4194 13.1302 15.0294 12.4902Z"/></svg>
+        <div class="home-bell-badge" id="bell-badge">8</div>
+      </button>
+    </div>
+
+    <div class="tab-scroll">
+      <!-- Fixed-height quote -->
+      <div class="quote-strip">
+        <span class="quote-ico">✦</span>
+        <p class="quote-strip-text" id="home-quote">"Together, we are stronger than any disaster."</p>
+      </div>
+
+      <!-- Weather Hero -->
+      <div class="weather-hero">
+        <div class="weather-hero-top">
+          <div>
+            <div class="weather-badge" id="wx-badge"><div class="wx-dot"></div>SAFE</div>
+            <div class="weather-loc" id="wx-loc">Detecting location…</div>
+          </div>
+          <div class="weather-icon-big" id="wx-icon">🌤️</div>
+        </div>
+        <div id="wx-body">
+          <div class="sk-line" style="height:34px;width:62%;margin-bottom:8px"></div>
+          <div class="sk-line" style="height:14px;width:38%;margin-bottom:14px"></div>
+          <div style="display:flex;gap:20px">
+            <div class="sk-line" style="height:13px;width:50px"></div>
+            <div class="sk-line" style="height:13px;width:50px"></div>
+            <div class="sk-line" style="height:13px;width:50px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Situation Banner -->
+      <div class="situation-banner" onclick="setNav('sos')">
+        <div class="sit-left">
+          <span style="font-size:20px;flex-shrink:0">⚠️</span>
+          <div><div class="sit-title">What's your situation?</div><div class="sit-sub">Notify others of your current status</div></div>
+        </div>
+        <button class="sit-btn">Report now</button>
+      </div>
+
+      <!-- Disaster Guide — 4 visual chips -->
+      <div class="sec-hdr"><span class="sec-title">Disaster Guide</span><button class="sec-more" onclick="openSubScreen('sc-guide')">See all</button></div>
+      <div class="dis-scroll">
+        <div class="dis-chip" onclick="openGuide('Flood')"><div class="dis-chip-icon" style="background:rgba(59,130,246,0.12)">💧</div><span>Flood</span></div>
+        <div class="dis-chip" onclick="openGuide('Fire')"><div class="dis-chip-icon" style="background:rgba(239,68,68,0.12)">🔥</div><span>Fire</span></div>
+        <div class="dis-chip" onclick="openGuide('Earthquake')"><div class="dis-chip-icon" style="background:rgba(139,92,246,0.12)">📡</div><span>Earthquake</span></div>
+        <div class="dis-chip" onclick="openGuide('Cyclone')"><div class="dis-chip-icon" style="background:rgba(249,115,22,0.12)">🌀</div><span>Cyclone</span></div>
+        <div class="dis-chip" onclick="openGuide('Landslide')"><div class="dis-chip-icon" style="background:rgba(16,185,129,0.12)">⛰️</div><span>Landslide</span></div>
+        <div class="dis-chip" onclick="openGuide('Storm')"><div class="dis-chip-icon" style="background:rgba(14,165,233,0.12)">🌪️</div><span>Storm</span></div>
+      </div>
+
+      <!-- Reports Near You -->
+      <div class="sec-hdr"><span class="sec-title">Reports near you</span><button class="sec-more" onclick="setNav('map')">View Map</button></div>
+      <div class="reports-scroll">
+        <div class="report-chip" onclick="setNav('map')"><div class="rci">🌊</div><span>Flood</span><span class="rc-badge">5</span></div>
+        <div class="report-chip" onclick="setNav('map')"><div class="rci">🌀</div><span>Cyclone</span><span class="rc-badge">3</span></div>
+        <div class="report-chip" onclick="setNav('map')"><div class="rci">⛰️</div><span>Landslide</span><span class="rc-badge">2</span></div>
+        <div class="report-chip" onclick="setNav('map')"><div class="rci">📡</div><span>Quake</span><span class="rc-badge">1</span></div>
+      </div>
+
+      <!-- Nearby Safe Places -->
+      <div class="sec-hdr"><span class="sec-title">Safe places near you</span><button class="sec-more" onclick="openSubScreen('sc-shelters')">See all</button></div>
+      <div class="nearby-list-home" id="nearby-places-home">
+        <div class="nearby-sk"></div><div class="nearby-sk"></div><div class="nearby-sk"></div>
+      </div>
+      <div style="height:110px"></div>
+    </div>
+  </div>
+
+  <!-- ─── TAB: ALERTS ─── -->
+  <div class="tab-content" id="tab-alerts">
+    <div class="tab-ph">
+      <h1 class="ph-title">Alerts</h1>
+      <button class="ph-action-btn" onclick="markAllRead()">Mark all</button>
+    </div>
+    <div class="tab-scroll tab-scroll-with-ph">
+      <div class="filter-tabs">
+        <button class="ftab active" onclick="filterAlerts('all',this)">All</button>
+        <button class="ftab" onclick="filterAlerts('critical',this)">🔴 Critical</button>
+        <button class="ftab" onclick="filterAlerts('warning',this)">🟡 Warning</button>
+        <button class="ftab" onclick="filterAlerts('info',this)">🔵 Info</button>
+      </div>
+      <div id="alerts-list" class="alerts-list"></div>
+      <div style="height:30px"></div>
+    </div>
+  </div>
+
+  <!-- ─── TAB: SOS ─── -->
+  <div class="tab-content" id="tab-sos">
+    <div class="tab-ph"><h1 class="ph-title">Emergency SOS</h1><div style="width:36px"></div></div>
+    <div class="tab-scroll tab-scroll-with-ph">
+      <p class="ph-desc">Hold the button for 3 seconds to dispatch emergency to family & services</p>
+      <!-- Incident Selector -->
+      <div class="incident-pill" onclick="cycleIncident()">
+        <span id="sos-emoji" style="font-size:22px">🌊</span>
+        <span id="sos-type">Flood</span>
+        <svg viewBox="0 0 24 24" width="16" fill="none" stroke="var(--text-3)" stroke-width="2.5" style="margin-left:auto"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <!-- SOS Hold Button -->
+      <div class="sos-arena">
+        <div class="sos-ring-wrap">
+          <div class="sos-bigring br1"></div>
+          <div class="sos-bigring br2"></div>
+          <div class="sos-bigring br3"></div>
+          <svg class="sos-svg" width="160" height="160" viewBox="0 0 160 160">
+            <circle cx="80" cy="80" r="75" fill="none" stroke="rgba(239,68,68,0.1)" stroke-width="6"/>
+            <circle id="sos-arc" cx="80" cy="80" r="75" fill="none" stroke="#ef4444" stroke-width="6"
+              stroke-dasharray="471.2" stroke-dashoffset="471.2" stroke-linecap="round"
+              transform="rotate(-90 80 80)" style="transition:stroke-dashoffset 0.1s linear"/>
+          </svg>
+        </div>
+        <button id="sos-btn" class="sos-hold-btn"
+          onpointerdown="startSOS(event)" onpointerup="endSOS()" onpointerleave="endSOS()">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#fff" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span class="sos-label-text">HOLD</span>
+        </button>
+      </div>
+      <p class="sos-hint-txt" id="sos-hint">Hold 3 seconds to activate emergency</p>
+      <!-- Emergency Hotlines -->
+      <div class="sec-hdr"><span class="sec-title">Emergency Hotlines</span></div>
+      <div class="hotlines-grid">
+        <a href="tel:112" class="hotline-card" style="--hc:#ef4444"><div class="hl-num">112</div><div class="hl-name">National Emergency</div></a>
+        <a href="tel:100" class="hotline-card" style="--hc:#3b82f6"><div class="hl-num">100</div><div class="hl-name">Police</div></a>
+        <a href="tel:101" class="hotline-card" style="--hc:#f97316"><div class="hl-num">101</div><div class="hl-name">Fire</div></a>
+        <a href="tel:108" class="hotline-card" style="--hc:#22c55e"><div class="hl-num">108</div><div class="hl-name">Ambulance</div></a>
+      </div>
+      <!-- Share Location -->
+      <button class="btn-share-loc" onclick="shareLocation()">
+        <svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Share My Live Location
+      </button>
+      <!-- Family Contacts -->
+      <div class="sec-hdr" style="margin-top:12px"><span class="sec-title">Family Contacts</span><button class="ph-action-btn" onclick="addFamilyContact()">+ Add</button></div>
+      <div id="family-list" class="family-list"></div>
+      <div style="height:30px"></div>
+    </div>
+  </div>
+
+  <!-- ─── TAB: MAP ─── -->
+  <div class="tab-content tab-map" id="tab-map">
+    <div class="map-top-bar">
+      <h1 class="ph-title">Live Disaster Map</h1>
+      <div class="live-chip"><div class="live-dot-sm"></div>LIVE</div>
+    </div>
+    <div class="map-filter-row">
+      <button class="mf-btn active" onclick="filterMap('all',this)">All</button>
+      <button class="mf-btn" onclick="filterMap('earthquake',this)">🌍 Quake</button>
+      <button class="mf-btn" onclick="filterMap('flood',this)">💧 Flood</button>
+      <button class="mf-btn" onclick="filterMap('wildfire',this)">🔥 Fire</button>
+      <button class="mf-btn" onclick="filterMap('cyclone',this)">🌀 Cyclone</button>
+    </div>
+    <div class="map-tools-row">
+      <button class="mt-btn active" onclick="toggleMapLayer('heatzone',this)">🔥 Heat Zones</button>
+      <button class="mt-btn" onclick="toggleMapLayer('traffic',this)">🚗 Traffic</button>
+      <button class="mt-btn" onclick="openEvacRoute()">🛣️ Evacuate</button>
+      <button class="mt-btn report-btn" onclick="openReportIncident()">+ Report</button>
+    </div>
+    <div id="gmap" class="gmap-container"></div>
+  </div>
+
+  <!-- ─── TAB: PROFILE ─── -->
+  <div class="tab-content" id="tab-profile">
+    <!-- STICKY header -->
+    <div class="tab-ph tab-ph-sticky">
+      <div style="width:36px"></div>
+      <h1 class="ph-title">Profile</h1>
+      <div style="width:36px"></div>
+    </div>
+    <div class="tab-scroll tab-scroll-with-ph" id="profile-scroll">
+      <!-- Avatar + name -->
+      <div class="profile-top">
+        <div class="profile-avatar-wrap" onclick="document.getElementById('av-input').click()">
+          <div class="profile-avatar" id="pf-avatar-display">G</div>
+          <div class="pf-cam">📷</div>
+        </div>
+        <input type="file" id="av-input" accept="image/*" style="display:none" onchange="handleAvatar(event)"/>
+        <h2 class="pf-name" id="pf-name-display">Guest User</h2>
+        <p class="pf-email-display" id="pf-email-display">demo@disasterai.in</p>
+      </div>
+      <!-- Personal Info -->
+      <div class="settings-group">
+        <p class="settings-group-label">Personal Information</p>
+        <div class="settings-block">
+          <div class="settings-row"><span class="sr-icon">👤</span><input class="sr-input" id="pf-name" placeholder="Full name"/></div>
+          <div class="settings-div"></div>
+          <div class="settings-row"><span class="sr-icon">✉️</span><input class="sr-input" id="pf-email" type="email" placeholder="Email address"/></div>
+          <div class="settings-div"></div>
+          <div class="settings-row"><span class="sr-icon">📱</span><input class="sr-input" id="pf-phone" type="tel" placeholder="Phone number"/></div>
+        </div>
+      </div>
+      <!-- Security -->
+      <div class="settings-group">
+        <p class="settings-group-label">Security</p>
+        <div class="settings-block">
+          <div class="settings-row"><span class="sr-icon">🔒</span><input class="sr-input" id="pf-curpass" type="password" placeholder="Current password"/></div>
+          <div class="settings-div"></div>
+          <div class="settings-row"><span class="sr-icon">🔑</span><input class="sr-input" id="pf-newpass" type="password" placeholder="New password"/></div>
+          <div class="settings-div"></div>
+          <button class="settings-inline-btn" onclick="updatePassword()">Update Password</button>
+        </div>
+      </div>
+      <!-- Notifications -->
+      <div class="settings-group">
+        <p class="settings-group-label">Notification Preferences</p>
+        <div class="settings-block">
+          <div class="settings-row sr-between"><div class="sr-lft"><span class="sr-icon">🔴</span><span class="sr-lbl">Critical Alerts</span></div><div class="toggle on" onclick="toggleNotif(this,'critical')"><div class="tog-k"></div></div></div>
+          <div class="settings-div"></div>
+          <div class="settings-row sr-between"><div class="sr-lft"><span class="sr-icon">🟡</span><span class="sr-lbl">Disaster Warnings</span></div><div class="toggle on" onclick="toggleNotif(this,'warning')"><div class="tog-k"></div></div></div>
+          <div class="settings-div"></div>
+          <div class="settings-row sr-between"><div class="sr-lft"><span class="sr-icon">📍</span><span class="sr-lbl">Nearby Incidents</span></div><div class="toggle on" onclick="toggleNotif(this,'nearby')"><div class="tog-k"></div></div></div>
+        </div>
+      </div>
+      <!-- Appearance -->
+      <div class="settings-group">
+        <p class="settings-group-label">Appearance</p>
+        <div class="settings-block">
+          <div class="settings-row sr-between"><div class="sr-lft"><span class="sr-icon">🌙</span><span class="sr-lbl">Dark Mode</span></div><div class="toggle" id="dark-tog" onclick="toggleDark(this)"><div class="tog-k"></div></div></div>
+        </div>
+      </div>
+      <!-- Community -->
+      <div class="settings-group">
+        <p class="settings-group-label">Community</p>
+        <a href="https://t.me/+KPKiasDPz9k5OGI1" target="_blank" class="join-card">
+          <div class="join-avatar"><svg viewBox="0 0 24 24" width="26" height="26" fill="#FFC107"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.834.942z"/></svg></div>
+          <div class="join-info"><p class="join-title">JOIN US</p><p class="join-sub">Community alerts on Telegram</p></div>
+          <svg viewBox="0 0 24 24" width="16" fill="none" stroke="#FFC107" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <!-- Developer -->
+      <div class="settings-group">
+        <p class="settings-group-label">About Developer</p>
+        <div class="dev-profile-card">
+          <div class="dev-avatar-wrap"><svg class="dev-svg-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="dev-info-wrap">
+            <h3 class="dev-name">Felix Mathew</h3>
+            <p class="dev-role">@developer · DisasterAI</p>
+            <div class="dev-links">
+              <a href="https://github.com/FelixMathew" target="_blank" class="dev-link-btn" title="GitHub"><svg width="16" height="16" fill="currentColor" viewBox="0 0 1024 1024"><path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0138.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"/></svg></a>
+              <a href="mailto:felixsparrow561@gmail.com" class="dev-link-btn" title="Email"><svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+              <a href="https://www.linkedin.com/in/felixmathew07/" target="_blank" class="dev-link-btn" title="LinkedIn"><svg width="16" height="16" fill="currentColor" viewBox="0 0 960 1000"><path d="M480 20c133.333 0 246.667 46.667 340 140s140 206.667 140 340c0 132-46.667 245-140 339S613.333 980 480 980c-132 0-245-47-339-141S0 632 0 500c0-133.333 47-246.667 141-340S348 20 480 20M362 698V386h-96v312h96m-48-352c34.667 0 52-16 52-48s-17.333-48-52-48c-14.667 0-27 4.667-37 14s-15 20.667-15 34c0 32 17.333 48 52 48m404 352V514c0-44-10.333-77.667-31-101s-47.667-35-81-35c-44 0-76 16.667-96 50h-2l-6-42h-84c1.333 18.667 2 52 2 100v212h98V518c0-12 1.333-20 4-24 8-25.333 24.667-38 50-38 32 0 48 22.667 48 68v174h98"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+      <div style="height:110px"></div>
+    </div>
+  </div>
+
+  <!-- ─── SHARED BOTTOM NAV ─── -->
+  <nav class="bottom-nav">
+    <button class="bnav-btn active" id="nav-home" onclick="setNav('home')">
+      <div class="bnav-indicator"></div>
+      <svg viewBox="0 0 21 20" height="20" width="21" fill="currentColor"><path d="M18.9999 6.01002L12.4499 0.770018C11.1699 -0.249982 9.16988 -0.259982 7.89988 0.760018L1.34988 6.01002C0.409885 6.76002 -0.160115 8.26002 0.0398848 9.44002L1.29988 16.98C1.58988 18.67 3.15988 20 4.86988 20H15.4699C17.1599 20 18.7599 18.64 19.0499 16.97L20.3099 9.43002C20.4899 8.26002 19.9199 6.76002 18.9999 6.01002ZM10.9199 16C10.9199 16.41 10.5799 16.75 10.1699 16.75C9.75988 16.75 9.41988 16.41 9.41988 16V13C9.41988 12.59 9.75988 12.25 10.1699 12.25C10.5799 12.25 10.9199 12.59 10.9199 13V16Z"/></svg>
+      <span>Home</span>
+    </button>
+    <button class="bnav-btn" id="nav-alerts" onclick="setNav('alerts')">
+      <div class="bnav-indicator"></div>
+      <div class="bnav-badge" id="nav-badge-alerts">8</div>
+      <svg viewBox="0 0 16 20" height="20" width="16" fill="currentColor"><path d="M15.0294 12.4902L14.0294 10.8302C13.8194 10.4602 13.6294 9.76016 13.6294 9.35016V6.82016C13.6282 5.70419 13.3111 4.61137 12.7147 3.66813C12.1183 2.72489 11.267 1.96978 10.2594 1.49016C10.0022 1.0335 9.62709 0.654303 9.17324 0.392195C8.71939 0.130087 8.20347 -0.00530784 7.6794 0.000159243C6.5894 0.000159243 5.6094 0.590159 5.0894 1.52016C3.1394 2.49016 1.7894 4.50016 1.7894 6.82016V9.35016C1.7894 9.76016 1.5994 10.4602 1.3894 10.8202L0.379396 12.4902C-0.0206039 13.1602 -0.110604 13.9002 0.139396 14.5802C0.379396 15.2502 0.949396 15.7702 1.6894 16.0202C3.6294 16.6802 5.6694 17.0002 7.7094 17.0002C9.7494 17.0002 11.7894 16.6802 13.7294 16.0302C14.4294 15.8002 14.9694 15.2702 15.2294 14.5802C15.4894 13.8902 15.4194 13.1302 15.0294 12.4902Z"/></svg>
+      <span>Alerts</span>
+    </button>
+    <button class="bnav-sos" onclick="setNav('sos')">
+      <div class="bnav-sos-ring r1"></div><div class="bnav-sos-ring r2"></div>
+      <div class="bnav-sos-inner"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <span class="bnav-sos-label">SOS</span>
+    </button>
+    <button class="bnav-btn" id="nav-map" onclick="setNav('map')">
+      <div class="bnav-indicator"></div>
+      <svg viewBox="0 0 18 20" height="20" width="18" fill="currentColor"><path d="M9 0C5.13 0 2 3.13 2 7c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S7.62 4.5 9 4.5s2.5 1.12 2.5 2.5S10.38 9.5 9 9.5z"/></svg>
+      <span>Map</span>
+    </button>
+    <button class="bnav-btn" id="nav-profile" onclick="setNav('profile')">
+      <div class="bnav-indicator"></div>
+      <svg viewBox="0 0 18 20" height="20" width="18" fill="currentColor"><path d="M9 10C11.761 10 14 7.761 14 5C14 2.239 11.761 0 9 0C6.239 0 4 2.239 4 5C4 7.761 6.239 10 9 10ZM9 12C5.686 12 0 13.686 0 17V20H18V17C18 13.686 12.314 12 9 12Z"/></svg>
+      <span>Profile</span>
+    </button>
+  </nav>
+
+  <!-- AI FAB (Home only) -->
+  <button class="ai-fab" id="ai-fab" onclick="toggleAISheet()">
+    <div class="ai-fab-box">
+      <svg class="ai-fab-elem" viewBox="0 0 24 24"><path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"/></svg>
+      <svg class="ai-fab-elem" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    </div>
+  </button>
+  <div class="ai-backdrop" id="ai-backdrop" onclick="closeAISheet()"></div>
+  <div class="ai-sheet" id="ai-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-hdr"><div class="sheet-hdr-title">Disaster AI Tools</div><div class="sheet-hdr-sub">Select a tool to continue</div></div>
+    <div class="ai-tools-list">
+      <button class="ai-tool-row" onclick="closeAISheet();openSubScreen('sc-ai-image')"><div class="ai-tool-icon" style="background:rgba(34,197,94,0.12);color:#16a34a">🛰️</div><div class="ai-tool-info"><div class="ai-tool-name">Image AI</div><div class="ai-tool-desc">Detect damage in photos</div></div></button>
+      <button class="ai-tool-row" onclick="closeAISheet();openSubScreen('sc-ai-video')"><div class="ai-tool-icon" style="background:rgba(59,130,246,0.12);color:#3b82f6">🎥</div><div class="ai-tool-info"><div class="ai-tool-name">Video Scan</div><div class="ai-tool-desc">Detect damage in footage</div></div></button>
+      <button class="ai-tool-row" onclick="closeAISheet();openSubScreen('sc-drone')"><div class="ai-tool-icon" style="background:rgba(239,68,68,0.12);color:#dc2626">🚁</div><div class="ai-tool-info"><div class="ai-tool-name">Drone Control</div><div class="ai-tool-desc">Live reconnaissance missions</div></div></button>
+    </div>
+  </div>
+</div><!-- end sc-main -->
+
+<!-- ═══ SUB-SCREENS (overlay over main with back button) ═══ -->
+
+<!-- GUIDE -->
+<div class="screen sub-screen" id="sc-guide">
+  <div class="sub-ph">
+    <button class="back-btn-anim" onclick="closeSubScreen()"><div class="bba-box"><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg></div></button>
+    <h1 class="ph-title">Disaster Guide</h1>
+    <div style="width:42px"></div>
+  </div>
+  <div class="sub-scroll"><div id="guide-list" class="guide-list"></div><div style="height:30px"></div></div>
+</div>
+
+<!-- SHELTERS -->
+<div class="screen sub-screen" id="sc-shelters">
+  <div class="sub-ph">
+    <button class="back-btn-anim" onclick="closeSubScreen()"><div class="bba-box"><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg></div></button>
+    <h1 class="ph-title">Safe Places Near You</h1>
+    <div style="width:42px"></div>
+  </div>
+  <div class="sub-scroll">
+    <div class="shelter-type-row">
+      <button class="stype active" onclick="loadShelters('hospital',this)">🏥 Hospital</button>
+      <button class="stype" onclick="loadShelters('police',this)">🚔 Police</button>
+      <button class="stype" onclick="loadShelters('fire_station',this)">🚒 Fire Station</button>
+      <button class="stype" onclick="loadShelters('school',this)">🏫 School</button>
+      <button class="stype" onclick="loadShelters('shelter',this)">🏛️ Shelter</button>
+    </div>
+    <div id="shelters-list" class="shelters-list"></div>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<!-- IMAGE AI -->
+<div class="screen sub-screen" id="sc-ai-image">
+  <div class="sub-ph">
+    <button class="back-btn-anim" onclick="closeSubScreen()"><div class="bba-box"><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg></div></button>
+    <h1 class="ph-title">Image Detection</h1><div style="width:42px"></div>
+  </div>
+  <div class="sub-scroll">
+    <p class="ph-desc">Upload a disaster image for AI analysis</p>
+    <div class="upload-zone" id="img-zone" onclick="document.getElementById('img-inp').click()">
+      <div class="upload-emoji">🛰️</div><p class="upload-title">Upload Image</p><p class="upload-sub">JPG · PNG · WEBP</p>
+      <input type="file" id="img-inp" accept="image/*" style="display:none" onchange="handleImgFile(event)"/>
+    </div>
+    <div id="img-preview-wrap" style="display:none;padding:0 20px">
+      <div style="position:relative"><img id="img-prev" class="preview-img" src="" alt=""/><button class="remove-preview" onclick="clearImg()">✕</button></div>
+      <button class="btn-yellow btn-full" id="img-analyze-btn" onclick="analyzeImg()">🔍 Analyze Image</button>
+    </div>
+    <div id="img-result" style="display:none;padding:0 20px;margin-top:12px"></div>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<!-- VIDEO AI -->
+<div class="screen sub-screen" id="sc-ai-video">
+  <div class="sub-ph">
+    <button class="back-btn-anim" onclick="closeSubScreen()"><div class="bba-box"><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg></div></button>
+    <h1 class="ph-title">Video Detection</h1><div style="width:42px"></div>
+  </div>
+  <div class="sub-scroll">
+    <p class="ph-desc">Upload drone or surveillance footage for frame analysis</p>
+    <div class="upload-zone" id="vid-zone" onclick="document.getElementById('vid-inp').click()">
+      <div class="upload-emoji">🎥</div><p class="upload-title">Upload Video</p><p class="upload-sub">MP4 · MOV · AVI</p>
+      <input type="file" id="vid-inp" accept="video/*" style="display:none" onchange="handleVidFile(event)"/>
+    </div>
+    <div id="vid-preview-wrap" style="display:none;padding:0 20px">
+      <video id="vid-prev" class="preview-vid" controls></video>
+      <button class="btn-yellow btn-full" id="vid-analyze-btn" onclick="analyzeVid()">▶ Scan Video</button>
+    </div>
+    <div id="vid-result" style="display:none;padding:0 20px;margin-top:12px"></div>
+    <div id="vid-timeline" style="display:none;padding:0 20px 20px"><p class="sec-title" style="margin-bottom:10px">Risk Timeline</p><div class="timeline-wrap"><canvas id="tl-canvas" width="340" height="120"></canvas></div></div>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<!-- DRONE -->
+<div class="screen sub-screen" id="sc-drone">
+  <div class="sub-ph">
+    <button class="back-btn-anim" onclick="closeSubScreen()"><div class="bba-box"><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg><svg class="bba-elem" viewBox="0 0 46 40"><path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"/></svg></div></button>
+    <h1 class="ph-title">Drone Control</h1><div style="width:42px"></div>
+  </div>
+  <div class="sub-scroll">
+    <div class="drone-dash">
+      <div class="drone-status-card"><div class="drone-dot"></div><p class="drone-status-title">Drone Standby</p><p class="drone-status-sub">Connect to a drone unit to begin mission</p></div>
+      <div class="drone-metrics">
+        <div class="dm-item"><div class="dm-val">—</div><div class="dm-lbl">Battery</div></div>
+        <div class="dm-item"><div class="dm-val">—</div><div class="dm-lbl">Altitude</div></div>
+        <div class="dm-item"><div class="dm-val">—</div><div class="dm-lbl">Speed</div></div>
+        <div class="dm-item"><div class="dm-val">—</div><div class="dm-lbl">Range</div></div>
+      </div>
+      <button class="btn-yellow btn-full">🚁 Launch Mission</button>
+    </div>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+</div><!-- end app-shell -->
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJkxVflV2ETtoOYBRIjR_xPHcN1BRP7g4&libraries=places,geometry&callback=initGoogleMap"></script>
+<script src="app.js"></script>
+</body>
+</html>

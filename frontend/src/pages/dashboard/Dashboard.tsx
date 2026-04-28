@@ -1,0 +1,1 @@
+import FloodPrediction from "@/components/dashboard/FloodPrediction";
