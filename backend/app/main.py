@@ -22,6 +22,9 @@ from app.routes.twilio_routes import router as twilio_router
 
 app = FastAPI()
 
+# Allow Railway/Vercel frontend URL via env variable, fallback allows all origins
+FRONTEND_URL = os.getenv("FRONTEND_URL", "")
+
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
@@ -35,10 +38,13 @@ origins = [
     "http://127.0.0.1:8000",
 ]
 
+if FRONTEND_URL:
+    origins.append(FRONTEND_URL)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"] if not FRONTEND_URL else origins,
+    allow_credentials=True if FRONTEND_URL else False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

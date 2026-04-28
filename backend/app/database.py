@@ -1,27 +1,29 @@
+import os
 from pymongo import MongoClient
+from dotenv import load_dotenv
 
-# FORCE LOCAL CONNECTION (NO ENV, NO CONFUSION)
-MONGO_URI = "mongodb://127.0.0.1:27017"
+load_dotenv()
+
+# Use MONGO_URI from environment (Railway sets this) — fallback to local dev
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://127.0.0.1:27017")
 
 try:
-    # Connect to MongoDB
     client = MongoClient(
         MONGO_URI,
-        serverSelectionTimeoutMS=5000
+        serverSelectionTimeoutMS=8000,
+        tls=True if "mongodb+srv" in MONGO_URI else False,
     )
-
-    # Test connection
     client.admin.command('ping')
-    print("[OK] Connected to LOCAL MongoDB successfully")
+    print("[OK] Connected to MongoDB successfully:", MONGO_URI[:40], "...")
 
 except Exception as e:
     print("[FAIL] MongoDB Connection Failed:", e)
+    raise
 
 
-# FORCE CORRECT DATABASE
+# Database and collections
 db = client["disasterdb"]
 print("[DB] Using Database:", db.name)
 
-# FORCE CORRECT COLLECTION
 users_collection = db["users"]
 print("[DB] Using Collection:", users_collection.name)

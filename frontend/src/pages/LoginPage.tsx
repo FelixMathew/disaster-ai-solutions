@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Loader2, Mail, Lock, Eye, EyeOff, ChevronLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { apiUrl } from "@/utils/api";
 
 const QUOTES = [
   "Safety is a way of life, not just a set of rules.",
@@ -266,7 +267,7 @@ const LoginForm = ({ onBack }: { onBack: () => void }) => {
       const form = new URLSearchParams();
       form.append("username", email);
       form.append("password", password);
-      const res = await axios.post("/api/login", form, {
+      const res = await axios.post(apiUrl("/api/login"), form, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
 
